@@ -1,67 +1,119 @@
-# Television — Roald Dahl (visual poem)
+# Television — Roald Dahl (Visual Poem)
 
-A small single-file static webpage that presents Roald Dahl's poem "Television" with a vintage/print-inspired layout and subtle animations.
+A single-file static webpage that presents Roald Dahl's poem "Television" with a vintage/print-inspired layout and subtle animations.
 
-> Note: This repository contains the full poem text inside `index.html`. Make sure you have permission to redistribute or publish the poem if you plan to host this project publicly — the poem is credited to Roald Dahl (from *Charlie and the Chocolate Factory*, 1964).
+## ⚠️ Copyright & Legal Notice
 
-Contents
-- `index.html` — the complete static page (HTML + embedded CSS) that renders the poem and visuals.
-- `LICENSE` — repository license (see file for details).
-- `DONATIONS.md` — donation information.
+**IMPORTANT:** This project contains the full text of "Television" by Roald Dahl from *Charlie and the Chocolate Factory* (1964). 
 
-Quick start (view locally)
+- **The poem text is © The Roald Dahl Story Company Limited**
+- This visualization is created for **educational and non-commercial purposes** under fair use principles
+- This project is **NOT authorized** or endorsed by The Roald Dahl Story Company Limited
+- If you plan to host, distribute, or use this project publicly or commercially, **you must obtain proper permissions** from the copyright holder
 
-You can open the page directly in a browser by double-clicking `index.html`, or run a tiny local HTTP server from the project root to serve it:
+**By using this code, you acknowledge that:**
+- You are responsible for ensuring your use complies with applicable copyright laws
+- The creator of this visualization (Keagan Gilmore) makes no warranties about the legality of any particular use
+- You agree to indemnify and hold harmless the creator from any copyright claims
 
-For macOS / Linux / Windows (Python 3):
+## 📋 Project Information
 
-```bash
-# from the project root
-python3 -m http.server 8000
-# then open http://localhost:8000/ in your browser
-```
+- **Repository:** [github.com/KeaganGilmore/roald-dahl-television-poem-vis](https://github.com/KeaganGilmore/roald-dahl-television-poem-vis)
+- **Author:** Keagan Gilmore
+- **Contact:** keagangilmore@gmail.com
+- **License:** MIT (code only - does NOT include the poem text)
 
-Or, simply open the file directly in your browser:
+## 📂 Contents
 
+- `index.html` — Complete static page (HTML + embedded CSS) that renders the poem and visuals
+- `LICENSE` — Repository license for the code (see file for details)
+- `DONATIONS.md` — Donation information
+- `README.md` — This file
+
+## 🚀 Quick Start (View Locally)
+
+### Option 1: Open directly in browser
+Simply double-click `index.html` or run:
 ```bash
 open index.html
 ```
 
-What you'll see
-- A typographic layout using Google Fonts (Playfair Display + Courier Prime).
-- A stylized retro television graphic with animated scanlines/static.
-- Staggered stanza reveal animations and themed sections (TV, shout, reading/book list, finale).
+### Option 2: Local HTTP server
+Using Python 3 (macOS/Linux/Windows):
+```bash
+python3 -m http.server 8000
+# Then open http://localhost:8000/ in your browser
+```
 
-Development notes
-- All styles are embedded in `index.html` inside a <style> block; there are CSS variables at the top for easy color tweaks.
-- Key animations:
-  - `flicker` — subtle TV body flicker
-  - `scanlines` — moving scanlines over the TV screen
-  - `staticMove` — simulated static movement
-  - `fadeUp` / `popIn` — stanza reveal animations
-- Fonts are loaded from Google Fonts via a link in the document head.
+Using Node.js:
+```bash
+npx serve
+```
 
-Suggested next steps
-- If you plan to publish, check copyright/permissions for the poem text and either obtain permission or replace the text with a public-domain or original poem.
-- Extract CSS to a separate file (e.g., `styles.css`) if you want to expand the project.
-- Add responsive tweaks or print styles if you want to distribute printable versions.
+## ✨ What You'll See
 
-Contributing
-- Small tweaks and visual improvements welcome. Open a PR with changes.
+- Typographic layout using Google Fonts (Playfair Display + Courier Prime)
+- Stylized retro television graphic with animated scanlines and static
+- Staggered stanza reveal animations
+- Themed sections (TV warning, shouting emphasis, reading/book list, finale)
+- Aged paper texture overlay
+- Responsive design optimized for modern browsers
 
-Credits
-- Poem: Roald Dahl — credited in the footer of `index.html`.
-- Design & implementation: repository author.
+## 🎨 Development Notes
 
-License
-See the `LICENSE` file in the repo for license details.
+### Architecture
+- All styles are embedded in `index.html` inside a `<style>` block
+- CSS variables at the top for easy color customization
+- No external dependencies except Google Fonts
 
-Donations
-See `DONATIONS.md` for donation details maintained in the project.
+### Key Animations
+- `flicker` — Subtle TV body flicker effect
+- `scanlines` — Moving scanlines over the TV screen
+- `staticMove` — Simulated static movement
+- `fadeUp` / `popIn` — Stanza reveal animations with staggered delays
 
-If you want, I can:
-- extract the styles into `styles.css` and update `index.html` to reference it,
-- add a small preview script or GitHub Pages workflow,
-- or add a permissive README excerpt that omits the poem text for public hosting guidance.
+### Customization
+To change colors, modify CSS variables in the `:root` selector:
+```css
+:root {
+    --cream: #f5f0e8;
+    --dark: #1a1208;
+    --tv-glow: #4af;
+    --warm: #c8602a;
+    --gold: #d4a847;
+    --book-green: #2d5a27;
+}
+```
 
-Tell me which of those (if any) you'd like next.
+## 🔮 Suggested Next Steps
+
+- **Copyright compliance:** If hosting publicly, obtain permission or replace with public domain/original text
+- **Extract CSS:** Move styles to separate `styles.css` file for larger projects
+- **Responsive tweaks:** Add mobile-specific optimizations
+- **Print styles:** Add `@media print` rules for printable versions
+- **Accessibility:** Add ARIA labels and improve screen reader support
+
+## 🤝 Contributing
+
+Small tweaks and visual improvements are welcome! Please:
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test in multiple browsers
+5. Submit a pull request
+
+## 📜 Disclaimer
+
+THIS SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+The use of copyrighted poem text is at your own risk. The author of this code assumes no responsibility for copyright infringement by users of this code.
+
+## 📞 Contact
+
+- **GitHub:** [@KeaganGilmore](https://github.com/KeaganGilmore)
+- **Email:** keagangilmore@gmail.com
+- **Project URL:** https://github.com/KeaganGilmore/roald-dahl-television-poem-vis
+
+---
+
+*This is a fan-made educational project and is not affiliated with or endorsed by Roald Dahl, The Roald Dahl Story Company Limited, or any of their affiliates.*
