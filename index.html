@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Television — Roald Dahl</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cream: #f5f0e8;
+            --dark: #1a1208;
+            --tv-glow: #4af;
+            --warm: #c8602a;
+            --gold: #d4a847;
+            --book-green: #2d5a27;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: var(--cream);
+            color: var(--dark);
+            font-family: 'Courier Prime', monospace;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Aged paper texture */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image:
+                    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        header {
+            padding: 80px 40px 40px;
+            text-align: center;
+            position: relative;
+            border-bottom: 3px double var(--dark);
+        }
+
+        .tv-icon {
+            width: 120px;
+            height: 90px;
+            margin: 0 auto 30px;
+            position: relative;
+            animation: flicker 4s infinite;
+        }
+
+        @keyframes flicker {
+            0%, 95%, 100% { opacity: 1; }
+            96% { opacity: 0.6; }
+            97% { opacity: 1; }
+            98% { opacity: 0.4; }
+            99% { opacity: 0.9; }
+        }
+
+        .tv-body {
+            width: 120px;
+            height: 80px;
+            background: var(--dark);
+            border-radius: 8px;
+            border: 3px solid var(--dark);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tv-screen {
+            width: 88px;
+            height: 60px;
+            background: linear-gradient(135deg, #1a3a5c 0%, #0d2040 50%, #1a3a5c 100%);
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(68, 170, 255, 0.5) inset;
+        }
+
+        .tv-screen::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(0,0,0,0.15) 2px,
+                    rgba(0,0,0,0.15) 4px
+            );
+            animation: scanlines 0.1s linear infinite;
+        }
+
+        @keyframes scanlines {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 4px; }
+        }
+
+        .tv-legs {
+            display: flex;
+            justify-content: space-around;
+            padding: 0 20px;
+        }
+
+        .tv-leg {
+            width: 6px;
+            height: 12px;
+            background: var(--dark);
+            border-radius: 0 0 3px 3px;
+        }
+
+        .tv-static {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23n)' opacity='0.3'/%3E%3C/svg%3E");
+            opacity: 0.4;
+            animation: staticMove 0.5s steps(2) infinite;
+        }
+
+        @keyframes staticMove {
+            0% { transform: translate(0,0); }
+            25% { transform: translate(-2px, 1px); }
+            50% { transform: translate(1px, -1px); }
+            75% { transform: translate(-1px, 2px); }
+            100% { transform: translate(0,0); }
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            font-style: italic;
+            letter-spacing: -0.02em;
+            line-height: 1;
+            margin-bottom: 12px;
+        }
+
+        .byline {
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.9rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--warm);
+        }
+
+        main {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 60px 40px 100px;
+        }
+
+        .poem {
+            line-height: 2;
+            font-size: 1.05rem;
+        }
+
+        .stanza {
+            margin-bottom: 2.5rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 0.6s ease forwards;
+        }
+
+        @keyframes fadeUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .stanza:nth-child(1) { animation-delay: 0.1s; }
+        .stanza:nth-child(2) { animation-delay: 0.2s; }
+        .stanza:nth-child(3) { animation-delay: 0.3s; }
+        .stanza:nth-child(4) { animation-delay: 0.4s; }
+        .stanza:nth-child(5) { animation-delay: 0.5s; }
+        .stanza:nth-child(6) { animation-delay: 0.6s; }
+        .stanza:nth-child(7) { animation-delay: 0.7s; }
+        .stanza:nth-child(8) { animation-delay: 0.8s; }
+        .stanza:nth-child(9) { animation-delay: 0.9s; }
+
+        .poem p {
+            position: relative;
+        }
+
+        /* TV section — blue glow era */
+        .tv-section {
+            background: rgba(0,20,40,0.04);
+            border-left: 3px solid var(--tv-glow);
+            padding: 20px 24px;
+            margin-bottom: 2.5rem;
+            position: relative;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 0.6s ease forwards;
+            animation-delay: 0.15s;
+        }
+
+        .tv-section::before {
+            content: '📺';
+            position: absolute;
+            top: -14px;
+            left: 16px;
+            font-size: 1.2rem;
+            background: var(--cream);
+            padding: 0 6px;
+        }
+
+        /* Shouting section */
+        .shout-section {
+            background: var(--dark);
+            color: var(--cream);
+            padding: 30px 32px;
+            margin: 2.5rem 0;
+            position: relative;
+            font-weight: 700;
+            font-size: 1.15rem;
+            letter-spacing: 0.05em;
+            opacity: 0;
+            transform: scale(0.97);
+            animation: popIn 0.5s ease forwards;
+            animation-delay: 0.5s;
+            border-radius: 2px;
+        }
+
+        @keyframes popIn {
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .shout-section::before {
+            content: '';
+            position: absolute;
+            inset: 4px;
+            border: 1px solid rgba(255,255,255,0.15);
+            pointer-events: none;
+        }
+
+        .shout-section p {
+            line-height: 1.9;
+        }
+
+        /* Reading / book section */
+        .read-section {
+            border: 3px solid var(--book-green);
+            padding: 28px 32px;
+            margin: 2.5rem 0;
+            position: relative;
+            background: rgba(45,90,39,0.04);
+            opacity: 0;
+            animation: fadeUp 0.6s ease forwards;
+            animation-delay: 0.7s;
+        }
+
+        .read-section::before {
+            content: '📖';
+            position: absolute;
+            top: -14px;
+            left: 16px;
+            font-size: 1.2rem;
+            background: var(--cream);
+            padding: 0 6px;
+        }
+
+        .read-emphasis {
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            font-size: 2.2rem;
+            color: var(--book-green);
+            letter-spacing: 0.08em;
+            display: block;
+            margin: 12px 0;
+            line-height: 1.3;
+        }
+
+        /* Book list section */
+        .books-section {
+            padding: 0 0 0 20px;
+            border-left: 2px dashed var(--gold);
+            margin-bottom: 2.5rem;
+            opacity: 0;
+            animation: fadeUp 0.6s ease forwards;
+            animation-delay: 0.75s;
+            font-style: italic;
+        }
+
+        /* Final plea */
+        .finale {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 3px double var(--dark);
+            border-bottom: 3px double var(--dark);
+            margin: 40px 0;
+            opacity: 0;
+            animation: fadeUp 0.8s ease forwards;
+            animation-delay: 0.9s;
+        }
+
+        .finale-cta {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            font-style: italic;
+            display: block;
+            margin: 16px 0;
+            color: var(--book-green);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: rgba(26,18,8,0.4);
+            border-top: 1px solid rgba(26,18,8,0.15);
+        }
+
+        /* Decorative rule */
+        .ornament {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--gold);
+            margin: 0.5rem 0 1.5rem;
+            letter-spacing: 0.5em;
+            opacity: 0.7;
+        }
+
+        em { font-style: italic; }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="tv-icon">
+        <div class="tv-body">
+            <div class="tv-screen">
+                <div class="tv-static"></div>
+            </div>
+        </div>
+        <div class="tv-legs">
+            <div class="tv-leg"></div>
+            <div class="tv-leg"></div>
+        </div>
+    </div>
+    <h1>Television</h1>
+    <p class="byline">Roald Dahl</p>
+</header>
+
+<main>
+    <div class="poem">
+
+        <div class="tv-section">
+            <p>The most important thing we've learned,</p>
+            <p>So far as children are concerned,</p>
+            <p>Is never, NEVER, NEVER let</p>
+            <p>Them near your television set —</p>
+            <p>Or better still, just don't install</p>
+            <p>The idiotic thing at all.</p>
+        </div>
+
+        <div class="stanza" style="animation-delay:0.2s">
+            <p>In almost every house we've been,</p>
+            <p>We've watched them gaping at the screen.</p>
+            <p>They loll and slop and lounge about,</p>
+            <p>And stare until their eyes pop out.</p>
+            <p><em>(Last week in someone's place we saw</em></p>
+            <p><em>A dozen eyeballs on the floor.)</em></p>
+        </div>
+
+        <div class="stanza" style="animation-delay:0.3s">
+            <p>They sit and stare and stare and sit</p>
+            <p>Until they're hypnotised by it,</p>
+            <p>Until they're absolutely drunk</p>
+            <p>With all that shocking ghastly junk.</p>
+        </div>
+
+        <div class="stanza" style="animation-delay:0.35s">
+            <p>Oh yes, we know it keeps them still,</p>
+            <p>They don't climb out the window sill,</p>
+            <p>They never fight or kick or punch,</p>
+            <p>They leave you free to cook the lunch</p>
+            <p>And wash the dishes in the sink —</p>
+            <p>But did you ever stop to think,</p>
+            <p>To wonder just exactly what</p>
+            <p>This does to your beloved tot?</p>
+        </div>
+
+        <div class="shout-section">
+            <p>IT ROTS THE SENSE IN THE HEAD!</p>
+            <p>IT KILLS IMAGINATION DEAD!</p>
+            <p>IT CLOGS AND CLUTTERS UP THE MIND!</p>
+            <p>IT MAKES A CHILD SO DULL AND BLIND</p>
+            <p>HE CAN NO LONGER UNDERSTAND</p>
+            <p>A FANTASY, A FAIRYLAND!</p>
+            <p>HIS BRAIN BECOMES AS SOFT AS CHEESE!</p>
+            <p>HIS POWERS OF THINKING RUST AND FREEZE!</p>
+            <p>HE CANNOT THINK — HE ONLY SEES!</p>
+        </div>
+
+        <div class="stanza" style="animation-delay:0.55s">
+            <p>'All right!' you'll cry. 'All right!' you'll say,</p>
+            <p>'But if we take the set away,</p>
+            <p>What shall we do to entertain</p>
+            <p>Our darling children? Please explain!'</p>
+        </div>
+
+        <div class="stanza" style="animation-delay:0.6s">
+            <p>We'll answer this by asking you,</p>
+            <p>'What used the darling ones to do?</p>
+            <p>'How used they keep themselves contented</p>
+            <p>Before this monster was invented?'</p>
+        </div>
+
+        <div class="stanza" style="animation-delay:0.65s">
+            <p>Have you forgotten? Don't you know?</p>
+            <p>We'll say it very loud and slow:</p>
+        </div>
+
+        <div class="read-section">
+            <span class="read-emphasis">THEY ... USED ... TO ... READ!</span>
+            <p>They'd READ and READ,</p>
+            <p>AND READ and READ, and then proceed</p>
+            <p>To READ some more. Great Scott! Gadzooks!</p>
+            <p>One half their lives was reading books!</p>
+            <p>The nursery shelves held books galore!</p>
+            <p>Books cluttered up the nursery floor!</p>
+            <p>And in the bedroom, by the bed,</p>
+            <p>More books were waiting to be read!</p>
+        </div>
+
+        <div class="books-section">
+            <p>Such wondrous, fine, fantastic tales</p>
+            <p>Of dragons, gypsies, queens, and whales</p>
+            <p>And treasure isles, and distant shores</p>
+            <p>Where smugglers rowed with muffled oars,</p>
+            <p>And pirates wearing purple pants,</p>
+            <p>And sailing ships and elephants,</p>
+            <p>And cannibals crouching 'round the pot,</p>
+            <p>Stirring away at something hot.</p>
+            <p><em>(It smells so good, what can it be?</em></p>
+            <p><em>Good gracious, it's Penelope.)</em></p>
+        </div>
+
+        <div class="stanza" style="animation-delay:0.8s">
+            <p>The younger ones had Beatrix Potter</p>
+            <p>With Mr. Tod, the dirty rotter,</p>
+            <p>And Squirrel Nutkin, Pigling Bland,</p>
+            <p>And Mrs. Tiggy-Winkle and—</p>
+            <p>Just How The Camel Got His Hump,</p>
+            <p>And How the Monkey Lost His Rump,</p>
+            <p>And Mr. Toad, and bless my soul,</p>
+            <p>There's Mr. Rate and Mr. Mole—</p>
+        </div>
+
+        <div class="ornament">✦ ✦ ✦</div>
+
+        <div class="stanza" style="animation-delay:0.85s">
+            <p>Oh, books, what books they used to know,</p>
+            <p>Those children living long ago!</p>
+        </div>
+
+        <div class="finale">
+            <p>So please, oh please, we beg, we pray,</p>
+            <p>Go throw your TV set away,</p>
+            <span class="finale-cta">And in its place you can install<br>A lovely bookshelf on the wall.</span>
+            <p>Then fill the shelves with lots of books,</p>
+            <p>Ignoring all the dirty looks,</p>
+            <p>The screams and yells, the bites and kicks,</p>
+            <p>And children hitting you with sticks—</p>
+        </div>
+
+        <div class="stanza" style="animation-delay:0.9s">
+            <p>Fear not, because we promise you</p>
+            <p>That, in about a week or two</p>
+            <p>Of having nothing else to do,</p>
+            <p>They'll now begin to feel the need</p>
+            <p>Of having something to read.</p>
+        </div>
+
+        <div class="stanza" style="animation-delay:0.95s">
+            <p>And once they start — oh boy, oh boy!</p>
+            <p>You watch the slowly growing joy</p>
+            <p>That fills their hearts. They'll grow so keen</p>
+            <p>They'll wonder what they'd ever seen</p>
+            <p>In that ridiculous machine,</p>
+            <p>That nauseating, foul, unclean,</p>
+            <p>Repulsive television screen!</p>
+        </div>
+
+        <div class="stanza" style="animation-delay:1s; text-align:center; font-style:italic; font-family:'Playfair Display',serif; font-size:1.1rem;">
+            <p>And later, each and every kid</p>
+            <p>Did love you more for what you did.</p>
+        </div>
+
+    </div>
+</main>
+
+<footer>
+    <p>From <em>Charlie and the Chocolate Factory</em> &nbsp;·&nbsp; Roald Dahl, 1964</p>
+</footer>
+
+</body>
+</html>
